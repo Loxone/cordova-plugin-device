@@ -95,10 +95,8 @@ public class Device extends CordovaPlugin implements ShakeDetector.Listener {
         WebView systemWebView = (WebView) webView.getView();
 
         // clearing the webView cache.. (we had a view problems with cached, invalid local responses)
-        systemWebView.clearCache(true);
-        systemWebView.getSettings().setAppCacheEnabled(false);
+        systemWebView.clearCache(true);     
         systemWebView.getSettings().setCacheMode(WebSettings.LOAD_NO_CACHE);
-        systemWebView.getSettings().setAppCacheMaxSize(0);
         systemWebView.getSettings().setRenderPriority(WebSettings.RenderPriority.HIGH);
 
         HDCheck hdCheck = new HDCheck(this.cordova.getActivity().getApplicationContext());
