@@ -73,6 +73,8 @@ public class Device extends CordovaPlugin implements ShakeDetector.Listener {
 
     private static boolean isTablet = false;
 
+    private static final String ANDROID_AUTO_PACKAGE = "com.google.android.projection.gearhead";
+
     private long lastShakeTimestamp = 0;
 
     /**
@@ -141,6 +143,7 @@ public class Device extends CordovaPlugin implements ShakeDetector.Listener {
 
             r.put("isTablet", isTablet);
             r.put("has3DTouch", false);
+            r.put("androidAutoSupported", isAndroidAutoSupported());
 
             JSONObject accessibility = new JSONObject();
             accessibility.put("textSizeAdjustment", 200);
@@ -298,5 +301,14 @@ public class Device extends CordovaPlugin implements ShakeDetector.Listener {
 
     private String getAppName() {
         return String.valueOf(cordova.getActivity().getTitle());
+    }
+
+    private boolean isAndroidAutoSupported() {
+        try {
+            cordova.getActivity().getPackageManager().getPackageInfo(ANDROID_AUTO_PACKAGE, 0);
+            return true;
+        } catch (PackageManager.NameNotFoundException e) {
+            return false;
+        }
     }
 }
