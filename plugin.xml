@@ -66,6 +66,12 @@
         <source-file src="src/android/Device.java" target-dir="src/org/apache/cordova/device" />
 
         <framework src="com.squareup:seismic:1.0.2" />
+
+        <config-file target="AndroidManifest.xml" parent="/manifest">
+            <queries>
+                <package android:name="com.google.android.projection.gearhead"/>
+            </queries>
+        </config-file>
     </platform>
 
     <!-- amazon-fireos -->
