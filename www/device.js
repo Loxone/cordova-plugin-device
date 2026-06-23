@@ -81,6 +81,7 @@ function Device() {
             me.biometricType = info.biometricType || "unknown";
 
             me.accessibility = info.accessibility || { textSizeAdjustment: 100 };
+            me.androidAutoSupported = info.androidAutoSupported || false;
 
             channel.onCordovaInfoReady.fire();
         },function(e) {
